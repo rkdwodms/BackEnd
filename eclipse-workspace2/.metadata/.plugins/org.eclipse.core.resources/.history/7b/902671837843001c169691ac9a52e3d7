@@ -1,0 +1,24 @@
+package project11_12;
+
+public class Exceptions {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(1);
+		int num = 0;
+		
+		try {
+			int[] ar = new int[10];
+			ar[10] = 1000; //error
+			
+		} catch (Exception e) {
+		
+			// TODO: handle exception
+			System.out.println(10000);
+		}
+		
+		System.out.println(2);
+
+	}
+
+}

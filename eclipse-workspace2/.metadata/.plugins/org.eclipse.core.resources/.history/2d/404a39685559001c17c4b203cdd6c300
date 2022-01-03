@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="col-lg-6">
+		<div class="input-group">
+			<FORM METHOD=POST action="signup">
+				 <span class="input-group-btn">
+				 	<input type="text" NAME="id" placeholder="아이디를 입력하세요.">
+					<button class="btn btn-default" type="submit">가입</button>
+					<button class="btn btn-default" type="button"><a href="index.jsp">취소</button>
+				</span>
+			</FORM>
+		</div>
+		<!-- /input-group -->
+	</div>
+	<!-- /.col-lg-6 -->
+
+</body>
+</html>

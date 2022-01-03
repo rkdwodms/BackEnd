@@ -1,0 +1,80 @@
+package Pack01;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+public class Signup {
+	
+	@RequestMapping("/signup")
+	// 함수 이름은 상관이 없다 -> 가독성을 위한 것임
+	String innerController(HttpServletRequest request) {
+		System.out.println("회원가입 들어옴");
+		String recv = request.getParameter("id");
+		System.out.println("데이터 잘직히나? : "+recv);
+		insert(recv);
+		return "signUpView";
+	}
+	
+	void insert(String recvdata) {
+		System.out.println("받은 데이터 : "+recvdata);
+		Connection conn = null;
+		Statement stmt = null;
+		Scanner sc=new Scanner(System.in);
+		String sql=null;
+		dbInfo dbin = new dbInfo();
+		Data data = new Data("member",recvdata);
+		
+		try{
+			Class.forName(dbin.getDriverName()); 
+			conn = DriverManager.getConnection(dbin.getUrl(), dbin.getId(), dbin.getPw());
+			
+			String inserts = "insert into member values (?)";
+
+			PreparedStatement pstmt = conn.prepareStatement(inserts);
+			pstmt.setString(1, data.getId());
+
+			int resultCnt = pstmt.executeUpdate();
+
+			if (resultCnt > 0) { 
+				System.out.println("정상적으로 입력되었음."); 
+				pstmt.close();
+
+			} else {
+				System.out.println("데이터 입력이 되지 않았음."); 
+				pstmt.close();
+			}
+
+
+
+		} catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				//자원 해제
+				if(conn != null && !conn.isClosed()) {
+					conn.close();   
+				}
+
+
+			} catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+}

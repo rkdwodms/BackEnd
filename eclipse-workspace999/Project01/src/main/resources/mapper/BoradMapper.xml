@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<mapper namespace="controller.BoradMapper.xml">
+    <select id="now" resultType="string">
+      SELECT NOW() FROM DUAL;
+    </select>
+</mapper>
+
+

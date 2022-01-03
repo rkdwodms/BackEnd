@@ -1,0 +1,9 @@
+package com.khh.web;
+
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public class memberDAOTest implements memberDAO {
+
+}

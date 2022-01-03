@@ -1,0 +1,111 @@
+package Pack01;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class Delete {
+	@RequestMapping("/delete")
+	String innerController( Model model, @RequestParam(value="id") String id) {
+		System.out.println("딜리트 실행 들어옴");
+		
+		System.out.println("id값 : "+id);
+		// TigerView.jsp로 가라는 의미
+		delete(id);
+		LinkedList<String> idList = new LinkedList<String>();
+		idList=connect();
+		model.addAttribute("idList",idList);
+		return "listView";
+	}
+	void delete(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		Scanner sc=new Scanner(System.in);
+		String sql="delete from member where id=?";
+		dbInfo dbin = new dbInfo();
+		System.out.println();
+		try{
+
+			conn = DriverManager.getConnection(dbin.getUrl(), dbin.getId(), dbin.getPw());
+
+			System.out.println("Successfully Connected!");
+
+			//DB와 연결된 conn 객체로부터 Statement 객체 획득.
+			pstmt = conn.prepareStatement(sql);	
+			pstmt.setString(1, id); 
+
+			//query문 날리기
+			pstmt.executeUpdate();
+			
+		}
+
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				//자원 해제
+				if(conn != null && !conn.isClosed())
+					conn.close();
+			} catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	LinkedList<String> connect() {
+		Connection conn = null;
+		Statement stmt = null;
+		Scanner sc=new Scanner(System.in);
+		String sql=null;
+		String id = null;
+		dbInfo dbin = new dbInfo();
+		System.out.println();
+		LinkedList<String> list = new LinkedList<String>();
+		try{
+
+			Class.forName(dbin.getDriverName());
+			conn = DriverManager.getConnection(dbin.getUrl(), dbin.getId(), dbin.getPw());
+
+			System.out.println("Successfully Connected!");
+			stmt = conn.createStatement();
+			sql = "select id from member";
+			ResultSet rs = null;
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				list.add(rs.getString("id"));
+				System.out.printf("[%10s] %n",id);
+			}
+
+		}
+
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				//자원 해제
+				if(conn != null && !conn.isClosed())
+					conn.close();
+			} catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+}

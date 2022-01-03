@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: api-gateway # 이름등록
+
+server:
+  port: 8765    # Zuul 포트 설정
+
+zuul:
+  routes:
+    service01:        # 
+      path: /app/**   #
+      #service-id: Service01
+      strip-prefix: false
+      
+    service02:    #
+      path: /bpp/** #
+      #service-id: Service02
+      strip-prefix: false
+
+eureka:
+  instance:
+    non-secure-port: ${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

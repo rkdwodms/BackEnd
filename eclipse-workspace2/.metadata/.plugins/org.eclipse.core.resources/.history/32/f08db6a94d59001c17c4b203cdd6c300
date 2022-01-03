@@ -1,0 +1,12 @@
+package com.khh.web;
+
+public class memberDAO {
+	
+	public void insertMember(MemberVO vo);
+
+	public void deleteMember(MemberVO vo);
+
+	public void updateMember(MemberVO vo);
+
+
+}

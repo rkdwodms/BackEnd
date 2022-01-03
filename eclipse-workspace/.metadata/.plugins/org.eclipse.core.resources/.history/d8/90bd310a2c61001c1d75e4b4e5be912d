@@ -1,0 +1,25 @@
+package Pack;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+class Tiger{
+	int num;
+
+
+	
+}
+public class Hello {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(1000);
+		Tiger t = new Tiger();
+		t.setNum(100);
+		System.out.println(t.getNum());
+
+	}
+
+}

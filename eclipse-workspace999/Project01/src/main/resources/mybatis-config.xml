@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ 
+<configuration>
+    <typeAliases>
+        <package name="Pack01"/> //패키지 이름
+    </typeAliases>
+    <mappers>
+        <mapper resource="mapper/BoardMapper.xml"/> //매퍼 위치
+    </mappers>
+</configuration>
+
+

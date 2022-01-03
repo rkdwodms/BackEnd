@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+    
+<mapper namespace="member.dao.BoardMapper">
+    <sql id="title">
+        <choose>
+            <when test="title != null">
+                #{title}
+            </when>
+            <otherwise>
+                '제목없음'
+            </otherwise>
+        </choose>
+    </sql>
+    
+    <sql id="content">
+        <choose>
+            <when test="content != null">
+                #{content}
+            </when>
+            <otherwise>
+                '내용없음'
+            </otherwise>
+        </choose>
+    </sql>
+    
+    <insert id="insertBoard" parameterType="boardVO">
+        INSERT INTO board VALUES 
+        (0, 
+        <include refid="title"/>, 
+        <include refid="content"/>,
+        #{writer}, #{password}, SYSDATE())
+    </insert>
+    
+    <update id="updateBoard" parameterType="boardVO">
+        UPDATE board SET 
+        title = <include refid="title"/>,
+        content = <include refid="content"/>,
+        writer = #{writer}, password = #{password} 
+        WHERE num = #{num}
+    </update>
+    
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM board WHERE num = #{num}
+    </delete>
+    
+    <select id="selectOneBoard" parameterType="int" resultType="boardVO">
+        SELECT * FROM board WHERE num = #{num}
+    </select>
+    
+    <select id="selectSearchBoard" parameterType="java.util.HashMap" resultType="boardVO">
+        SELECT * FROM board
+    </select>
+    
+    <select id="selectAllBoard" resultType="boardVO">
+        SELECT * FROM board
+    </select>
+</mapper>

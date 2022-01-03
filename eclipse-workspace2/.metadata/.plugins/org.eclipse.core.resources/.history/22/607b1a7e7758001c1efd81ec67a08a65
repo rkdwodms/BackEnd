@@ -1,0 +1,75 @@
+package Pack01;
+
+import java.util.LinkedList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class List {
+	
+	
+	@RequestMapping("/list")
+	String innerController(Model model) {
+		System.out.println("리스트 들어옴");
+		// TigerView.jsp로 가라는 의미
+		LinkedList<String> idList = new LinkedList<String>();
+		idList=connect();
+		model.addAttribute("idList",idList);
+		System.out.println(idList.get(0));
+		return "listView";
+	}
+
+	LinkedList<String> connect() {
+		Connection conn = null;
+		Statement stmt = null;
+		Scanner sc=new Scanner(System.in);
+		String sql=null;
+		String id = null;
+		dbInfo dbin = new dbInfo();
+		System.out.println();
+		LinkedList<String> list = new LinkedList<String>();
+		try{
+
+			Class.forName(dbin.getDriverName());
+			conn = DriverManager.getConnection(dbin.getUrl(), dbin.getId(), dbin.getPw());
+
+			System.out.println("Successfully Connected!");
+			stmt = conn.createStatement();
+			sql = "select id from member";
+			ResultSet rs = null;
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				list.add(rs.getString("id"));
+				System.out.printf("[%10s] %n",id);
+			}
+
+		}
+
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				//자원 해제
+				if(conn != null && !conn.isClosed())
+					conn.close();
+			} catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+}
+

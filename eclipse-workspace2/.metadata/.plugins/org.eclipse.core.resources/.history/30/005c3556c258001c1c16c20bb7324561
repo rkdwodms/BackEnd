@@ -1,0 +1,32 @@
+package com.khh.web;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MemberDAO {
+
+	@Autowired
+	SqlSession sqlSession;
+	
+	public List<Animal> getAnimal(){
+		return sqlSession.selectList("mybatis.getAnimals");
+	}
+	
+	//등록
+	public int insertAnimal(Animal animalDto) {
+		return sqlSession.insert("mybatis.insertAnimal", animalDto);
+	}
+	//수정
+	public int updateAnimal(Animal animalDto) {
+		return sqlSession.update("mybatis.updateAnimal",animalDto);
+	}	
+	//삭제
+	public int deleteAnimal(String pid) {
+		return sqlSession.delete("mybatis.deleteAnimal", pid);
+	}
+}

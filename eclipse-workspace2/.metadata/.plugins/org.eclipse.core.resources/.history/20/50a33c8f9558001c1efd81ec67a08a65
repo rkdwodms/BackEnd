@@ -1,0 +1,43 @@
+
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>회원 목록 뷰</h1>
+
+	</div>
+
+	<table border='1' width='1200'>
+		<tr>
+			<th>아이디</th>
+			<th>삭제</th>
+			<th>수정</th>
+		</tr>
+
+		<c:forEach var="t1" items="${idList}" varStatus="status">
+			<td><c:out value="${name}" /></td>
+			<td><a href="t2">삭제</a></td>
+			<td><a href="t3">수정</a></td>
+		</c:forEach>
+
+	</table>
+
+
+	</div>
+
+	<a href="index.jsp">메인페이지로 이동</a>
+
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<%
+	//java.util.Date date = new java.util.Date();
+
+	Date date new Date();
+
+
+
+
+
+%>
+
+<%= date %>
+
+	<!-- 	//num은 반드시 홀수라고 정의한다. 
+	// 배열 사용하지 않는다. 
+	int num = 5; 일때
+	
+	결과값 
+	   *
+	 * * *
+   * * * * *
+     * * *  
+	   * -->
+
+	<%-- <%
+	int num = 5;
+	int cent = num/2;
+		
+		for(int i=0; i < cent; i++){
+	        for(int j=0; j<4-i; j++){   
+	            System.out.print(" ");
+	        }
+	        for(int j=0; j<i*2+1; j++) { 
+	            System.out.print("*");
+	        }
+	        System.out.println();
+	    }
+			System.out.println();
+	  
+	
+	%>
+ --%>
+	<!-- jsp : 여기서 자바를 사용하겠다.  -->
+	<!-- 함수 작성 가능 -->
+	<!-- 페이지 출력 가능 -->
+	<!-- 자바 코드 작성 가능 -->
+
+	<h1>호랑이</h1>
+	<!-- 	
+ 예제 1 : 자바 코드를 사용할 수 있다. -->
+
+	<%-- 		<!-- 스크립트 릿 -->
+		<%
+			int num = 10;
+			String s = "호랑이";
+			
+			
+			//페이지로 출력하는 역할을 한다. 
+			out.println(num + s + "</br>");
+			out.println(s);
+			
+			
+	 		
+		%> --%>
+
+	<%-- 		
+		<!-- 표현식 : 웹 페이지 출력 -->
+		
+		<% 
+		int num = 20;
+		String s = "호랑이";
+		%>
+
+		
+			
+		<%= num %><p/>
+		<%= s %><p/> --%>
+
+
+
+	<!-- 선언문 :  함수 작성  -->
+
+
+
+	<%-- 		
+		<%!
+		public void m1(javax.servlet.jsp.JspWriter out) {
+			try{
+				out.print("함수콜");
+			}catch(Exception e){
+				
+			}
+			
+		}
+		
+		public int m2() {
+			return 1000;
+		}
+		
+		%>
+		 
+		 
+		<% 
+			m1(out);
+		%>
+		<%= m2() %>
+ --%>
+
+	<!-- 주석문  -->
+	<%-- --%>
+
+</body>
+</html>

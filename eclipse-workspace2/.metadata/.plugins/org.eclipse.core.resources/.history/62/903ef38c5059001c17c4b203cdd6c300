@@ -1,0 +1,32 @@
+package com.khh.web;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Repository;
+import javax.inject.Inject;
+import org.apache.ibatis.session.SqlSession;
+
+
+
+@Repository
+public class memberDAOTest implements memberDAO {
+
+	@Inject
+	private SqlSession sqlSession;
+
+	private static final String namespace = "com.khh.mapper.memberMapper";
+
+	@Override
+	public void insertMember(memberVO vo){
+		sqlSession.insert(namespace + ".insertMember", vo);
+	}
+
+	@Override
+	public void deleteMember(memberVO vo){
+		sqlSession.delete(namespace + ".deleteMember", vo);
+	}
+
+	@Override
+	public void updateMember(memberVO vo){
+		sqlSession.update(namespace + ".updateMember", vo);
+	}

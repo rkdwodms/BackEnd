@@ -1,0 +1,27 @@
+package com.khh.web.test;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.khh.web.memberDAO;
+import com.khh.web.memberVO;
+
+@Controller
+public class DaoTest {
+	
+	@Inject
+	private memberDAO dao;
+	
+	@RequestMapping("/daotest")
+	public void daotest() {
+		memberVO vo = new memberVO();
+		vo.setId(null);
+		vo.setAge(0);
+		vo.setSalary(0;)
+	}
+	
+	
+
+}

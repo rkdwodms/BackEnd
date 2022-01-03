@@ -1,0 +1,40 @@
+package com.khh.web;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.inject.Inject;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.runner.RunWith;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
+
+
+
+@Repository
+public class memberDAOTest implements memberDAO {
+
+	@Inject
+	private SqlSession sqlSession;
+
+	private static final String namespace = "com.khh.mapper.memberMapper";
+
+	@Override
+	public void insertMember(memberVO vo){
+		sqlSession.insert(namespace + ".insertMember", vo);
+	}
+
+	@Override
+	public void deleteMember(memberVO vo){
+		sqlSession.delete(namespace + ".deleteMember", vo);
+	}
+
+	@Override
+	public void updateMember(memberVO vo){
+		sqlSession.update(namespace + ".updateMember", vo);
+	}
+}

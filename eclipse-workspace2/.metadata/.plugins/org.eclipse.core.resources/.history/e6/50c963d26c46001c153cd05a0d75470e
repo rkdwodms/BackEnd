@@ -1,0 +1,71 @@
+package project11_15;
+
+import java.util.LinkedList;
+
+
+// 업캐스팅
+
+class A{}
+class B extends A{}
+
+//interface C{}
+//class D implements C{}
+
+class MyQueue{
+	
+
+int front;
+int rear;
+int num;
+int[] data;
+
+MyQueue() {
+	front = rear = num = 0;
+	data = new int[4];
+	
+}
+void enque(int x) {
+	if( num == 4) {
+		System.out.println(" 추가  불가 ");
+	}
+	data[rear++] = x;
+	num++;
+	
+}
+
+int deque() {
+	int x = data[front++];
+	num--;
+	return x;
+}
+}
+
+public class Queue {
+	
+	
+
+	public static void main(String[] args) {
+//		// 부 = 자 
+//		// TODO Auto-generated method stub
+		
+		MyQueue mq = new MyQueue();
+		mq.show();
+		mq.enque(10);
+		mq.deque();
+//
+//		Queue<Integer> q = new LinkedList<>();
+//		A tt = new C();
+//		
+//		A t1 = new A(); // 부 = 부
+//		
+//		// 부 = 자 (업 캐스팅)
+//		A t2 = new B(); // 부 = 자
+//		
+//		B t3 = new A(); // 자 = 부 (다운 캐스팅)
+//		B t4 = new B(); // 부 = 부       
+		
+		
+
+	}
+
+}

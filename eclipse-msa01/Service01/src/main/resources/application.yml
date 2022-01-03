@@ -1,0 +1,21 @@
+# service01 yml
+
+server:
+  port: 8085
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  application:
+    name: Service01
+
+# 앞으로 코드에서 tiger라고 사용한 것이 있다면 
+# tiger글자 대신에 local8086으로 해석하세요!
+# 86이 문제가 생기면 다음과 같은 포트로 가세요 loadbalancing!!
+tiger:
+  ribbon:
+    listOfServers: localhost:8086, localhost:8087, localhost:8088
+    MaxAutoRetries: 0
+    MaxAutoRetruesNextServer: 1

@@ -1,0 +1,18 @@
+package com.khh.web;
+
+import javax.inject.Inject;
+
+import com.khh.web.memberDAO;
+import com.khh.web.memberVO;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+
+public class memberController {
+	
+	@Inject
+    private memberDAO dao;
+
+}

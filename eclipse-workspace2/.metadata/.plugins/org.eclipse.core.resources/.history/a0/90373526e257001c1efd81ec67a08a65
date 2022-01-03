@@ -1,0 +1,19 @@
+package Pack01;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class Tiger {
+	
+		@RequestMapping("/t6") //아래 함수 이름은 t2이야
+		String func06(Model model) { 
+			model.addAttribute("nickName","tiger");
+			model.addAttribute("age", 3000);
+			return "TigerView"; 
+			//컨트롤러 이름이 Tiger이면 위과 같은 뷰 이름으로 설정해야함 
+		}
+
+	}
+

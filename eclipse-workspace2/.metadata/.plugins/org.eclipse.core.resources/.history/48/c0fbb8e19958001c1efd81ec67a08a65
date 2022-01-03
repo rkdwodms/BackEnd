@@ -1,0 +1,35 @@
+package Pack01;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import org.junit.Test;
+
+public class MySQLConnectionTest {
+    private static final String DRIVER =
+            //MySQL Driver 5 이하
+            "com.mysql.cj.jdbc.Driver";
+            //MySQL Driver 6 이상
+            //"com.mysql.cj.jdbc.Driver";
+    private static final String URL =
+            //MySQL 5.6 이하
+            //"jdbc:mysql://127.0.0.1:3306/Spring_tuto";
+            //MySQL 5.7 이상
+            "jdbc:mysql://127.0.0.1:3306/db02?useSSL=false&serverTimezone=UTC";
+    private static final String USER =
+            "root";
+    private static final String PW =
+            "beyondme";
+
+    @Test
+    public void testConnection() throws Exception{
+        Class.forName(DRIVER);
+        try{
+            Connection con = DriverManager.getConnection(URL, USER, PW);
+            System.out.println(con);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+}

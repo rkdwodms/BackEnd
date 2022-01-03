@@ -1,0 +1,39 @@
+package com.khh.web;
+
+public class memberVO {
+
+	private String id;
+	private int age;
+	private int salary;
+	
+	
+	public memberVO() {
+		super();
+		this.id;
+		this.age;
+		this.salary;
+		
+	}
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	
+	
+}

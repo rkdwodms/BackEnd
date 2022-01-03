@@ -1,0 +1,28 @@
+package Pack;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+
+// app/1000
+@RestController
+@RequestMapping("/app")
+// 8085의 요청 준비 끝 
+public class AppController {
+	@GetMapping("/{appNum}") // app뒤에 있는 1000을 받을 변수명을 적어주면 된다. 
+	public String f1(@PathVariable String appNum) {
+		
+		RestTemplate restTemplate = new  RestTemplate();
+		String str = restTemplate.getForObject(
+				"http://localhost:8086/bpp/3000", // 
+				String.class); // 특정 사이트에서 데이터 얻어옴
+		
+		// 문자열을 리턴 받음 
+		return "AppController : " + appNum + 
+				"<br/>" + str;
+	}
+
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	
+	<display-name>Web02</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!-- 패키지안의 인덱스서블릿을 hello라는 이름으로 설정하겠다.   -->
+	<servlet>
+		<servlet-name>hello</servlet-name>
+		<servlet-class>Pack.IndexServlet</servlet-class>
+		
+		<!-- 
+		
+		+===============================+
+		|                               |
+		|                               |
+		|                               |
+		|                               |
+		|                               |
+		|                               |
+		|                               |
+		+===============================+
+		
+
+		 -->
+	
+	
+	</servlet>
+	
+	<!-- /hello로 url이 입력되면 hello로 설정된 servlet을 호출하라. -->
+	<servlet-mapping>
+		
+		<servlet-name>hello</servlet-name>
+		<url-pattern>/lion</url-pattern>
+	
+	</servlet-mapping>
+	
+	<!-- /lion이라고 입력이 되면 hello객체를 호출하세요 -->
+
+</web-app>

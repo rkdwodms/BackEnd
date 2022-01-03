@@ -1,0 +1,79 @@
+package Pack01;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+public class Signup {
+	
+	@RequestMapping("/signup")
+	// �븿�닔 �씠由꾩� �긽愿��씠 �뾾�떎 -> 媛��룆�꽦�쓣 �쐞�븳 寃껋엫
+	String innerController(HttpServletRequest request) {
+		String recv = request.getParameter("id");
+
+		insert(recv);
+		return "signUpView";
+	}
+	
+	void insert(String recvdata) {
+		System.out.println("諛쏆� �뜲�씠�꽣 : "+recvdata);
+		Connection conn = null;
+		Statement stmt = null;
+		Scanner sc=new Scanner(System.in);
+		String sql=null;
+		dbInfo dbin = new dbInfo();
+		Data data = new Data("member",recvdata);
+		
+		try{
+			Class.forName(dbin.getDriverName()); 
+			conn = DriverManager.getConnection(dbin.getUrl(), dbin.getId(), dbin.getPw());
+			
+			String inserts = "insert into member values (?)";
+
+			PreparedStatement pstmt = conn.prepareStatement(inserts);
+			pstmt.setString(1, data.getId());
+
+			int resultCnt = pstmt.executeUpdate();
+
+			if (resultCnt > 0) { 
+				System.out.println("�젙�긽�쟻�쑝濡� �엯�젰�릺�뿀�쓬."); 
+				pstmt.close();
+
+			} else {
+				System.out.println("�뜲�씠�꽣 �엯�젰�씠 �릺吏� �븡�븯�쓬."); 
+				pstmt.close();
+			}
+
+
+
+		} catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				//�옄�썝 �빐�젣
+				if(conn != null && !conn.isClosed()) {
+					conn.close();   
+				}
+
+
+			} catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+}

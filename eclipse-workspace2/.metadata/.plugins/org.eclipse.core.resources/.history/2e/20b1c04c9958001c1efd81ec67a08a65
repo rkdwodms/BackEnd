@@ -1,0 +1,15 @@
+package Pack01;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class Update {
+	@RequestMapping("/update")
+	String innerController() {
+		System.out.println("수정 들어옴");
+	
+		return "loadingView";
+	}
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<mapper namespace="member.dao.UserMapper">
+    <insert id="insertUser" parameterType="userVO">
+        INSERT INTO member VALUES (#{userId}, #{userPw}, #{userName}, #{userGender}, #{userEmail})
+    </insert>
+    
+    <update id="updateUser" parameterType="userVO">
+        UPDATE member 
+        SET userPw = #{userPw}, userName = #{userName}, userGender = #{userGender}, userEmail = #{userEmail} 
+        WHERE userId = #{userId}
+    </update>
+    
+    <delete id="deleteUser" parameterType="string">
+        DELETE FROM member WHERE userId = #{userId}
+    </delete>
+    
+    <select id="selectOneUser" parameterType="string" resultType="userVO">
+        SELECT * FROM member WHERE userId = #{userId}
+    </select>
+    
+    <select id="selectAllUser" resultType="userVO">
+        SELECT * FROM member
+    </select>
+</mapper>
